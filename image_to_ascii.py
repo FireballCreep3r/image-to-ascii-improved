@@ -1,11 +1,9 @@
 from PIL import Image
 def image_to_ascii(image, type, saveas="output.txt", quality=3):
     scale = int(quality)
-    #print
     img = Image.open((image+"."+type))
     w,h = img.size
-    img.resize((w//quality, h//quality)).save("resized.%s" % type)
-    #img = Image.open("resized.%s" % type)
+    img.resize((w//quality, h//quality))
     w, h = img.size
     grid = []
     for i in range(h):
