@@ -1,20 +1,12 @@
 from PIL import Image
-def asciiConvert(image, type, saveas, scale):
-    scale = int(scale)
-
-    # open and get image size
-    img = Image.open(image)
+def image_to_ascii(image, type, saveas="output.txt", quality=3):
+    scale = int(quality)
+    #print
+    img = Image.open((image+"."+type))
     w,h = img.size
-
-    # resize image (downscale)
-    img.resize((w//scale, h//scale)).save("resized.%s" % type)
-
-    # open new image
-    img = Image.open("resized.%s" % type)
-    w, h = img.size # get new width and height 
-
-
-    # list with correct length and height (same as resized image)
+    img.resize((w//quality, h//quality)).save("resized.%s" % type)
+    #img = Image.open("resized.%s" % type)
+    w, h = img.size
     grid = []
     for i in range(h):
         grid.append(["X"] * w)
@@ -28,20 +20,24 @@ def asciiConvert(image, type, saveas, scale):
                 grid[y][x] = "#"
             elif sum(pix[x,y]) in range(1,100):
                 grid[y][x] = "X"
-            elif sum(pix[x,y]) in range(100,200):
+            elif sum(pix[x,y]) in range(100,150):
+                grid[y][x] = "@"
+            elif sum(pix[x,y]) in range(150,250):
                 grid[y][x] = "%"
-            elif sum(pix[x,y]) in range(200,300):
+            elif sum(pix[x,y]) in range(250,350):
                 grid[y][x] = "&"
-            elif sum(pix[x,y]) in range(300,400):
+            elif sum(pix[x,y]) in range(350,450):
                 grid[y][x] = "*"
-            elif sum(pix[x,y]) in range(400,500):
+            elif sum(pix[x,y]) in range(450,550):
                 grid[y][x] = "+"
-            elif sum(pix[x,y]) in range(500,600):
+            elif sum(pix[x,y]) in range(550,650):
                 grid[y][x] = "/"
-            elif sum(pix[x,y]) in range(600,700):
+            elif sum(pix[x,y]) in range(650,750):
                 grid[y][x] = "("
-            elif sum(pix[x,y]) in range(700,750):
+            elif sum(pix[x,y]) in range(750,800):
                 grid[y][x] = "'"
+            elif sum(pix[x,y]) in range(800,850):
+                grid[y][x] = "."
             else:
                 grid[y][x] = " "
                 
@@ -52,8 +48,17 @@ def asciiConvert(image, type, saveas, scale):
 
     art.close()
 
+file_name = "mona_lisa"#YOUR FILE HERE
+type = "jpg"#YOUR FILE TYPE
+saveas = "output.txt"#NAME OF YOUR OUTPUT FILE
+quality = 3#RANGE QUALITY HERE, MAY SLOW YOUR MACHINE
+
+
 if __name__ == '__main__':
-    asciiConvert("mona_lisa.jpg", "jpg", "mona_lisa.txt", "3")
+    image_to_ascii(image=file_name, type=type, saveas="output.txt", quality=quality)
 
-
-
+# This project is purely expirimental. Any type of use is prohibited and not
+# in the responsibility of 'FireballCreep3r'.
+# The text image is currently takes up x3 of original image if max quality.
+# This project may be updated in the future.
+# © Created by FireballCreep3r on Github. Main code forkey by 'Isak Solheim'.
