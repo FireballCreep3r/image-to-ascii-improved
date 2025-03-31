@@ -48,7 +48,7 @@ def image_to_ascii(image, type, saveas="output.txt", quality=3):
 
     art.close()
 
-file_name = "mona_lisa"#YOUR FILE HERE
+file_name = "image"#YOUR FILE HERE
 type = "jpg"#YOUR FILE TYPE
 saveas = "output.txt"#NAME OF YOUR OUTPUT FILE
 quality = 3#RANGE QUALITY HERE, MAY SLOW YOUR MACHINE
